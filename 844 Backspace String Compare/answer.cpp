@@ -1,26 +1,32 @@
 #include <string>
 
+int get_next_char(const std::string& s, const int start_index){
+    int index = start_index;
+    int b_count = 0;
+    while (index >= 0){
+        if (s[index] == '#') ++b_count;
+        else if (b_count > 0) --b_count;
+        else break;
+        --index;
+    }
+    return index;
+}
+
+
+
 class Solution {
 public:
-    bool backspaceCompare(std::string& s, std::string& t) {
-        int new_size=0;
-        for (size_t i=0; i<s.size(); ++i){
-            if (s[i] == '#'){
-                new_size = std::max(--new_size,0);
-            } else {
-                s[new_size++] = s[i];
-            }
+    bool backspaceCompare(const std::string& s, const std::string& t) {
+        int s_index = s.size()-1, t_index = t.size()-1;
+        while (s_index >=0 || t_index >=0){
+            int si = get_next_char(s,s_index);
+            int ti = get_next_char(t,t_index);
+            if (si < 0 && ti < 0) return true;
+            if (si < 0 || ti < 0) return false;
+            if (s[si] != t[ti]) return false;
+            s_index = si-1;
+            t_index = ti-1;
         }
-        s = s.substr(0,new_size);
-        new_size=0;
-        for (size_t i=0; i<t.size(); ++i){
-            if (t[i] == '#'){
-                new_size = std::max(--new_size,0);
-            } else {
-                t[new_size++] = t[i];
-            }
-        }
-        t = t.substr(0,new_size);
-        return s == t;
+        return true;
     }
 };
