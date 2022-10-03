@@ -14,7 +14,6 @@ public:
           ++j;
         } else {
           mi[j][1] = std::max(mi[j][1],in[i][1]);
-
         }
       }
       return mi;
