@@ -14,8 +14,8 @@ public:
         q.push({entrance[0],entrance[1]});
         maze[entrance[0]][entrance[1]] = '+';
         while (q.size()){
-            int sz = q.size();
-            for (int a=0; a<sz; ++a){
+            size_t sz = q.size();
+            for (size_t a=0; a<sz; ++a){
                 auto [i,j] = q.front();
                 q.pop();
                 for (int k=0; k<4; ++k){
