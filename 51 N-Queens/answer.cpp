@@ -15,9 +15,9 @@ class Solution {
     }
 public:
     vector<vector<string>> solveNQueens(int n) {
-        vector<bool> diag(2*n,false);
-        vector<bool> rdiag(2*n,false);
-        vector<int> cols(n,false);
+        vector<bool> diag(2*n);
+        vector<bool> rdiag(2*n);
+        vector<int> cols(n);
         vector<string> board(n,string(n,'.'));
         vector<vector<string>> ans;
         dfs(0,n,cols,diag,rdiag,ans,board);
