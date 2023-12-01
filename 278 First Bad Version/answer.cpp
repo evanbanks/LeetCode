@@ -1,15 +1,13 @@
 class Solution {
 public:
-    int firstBadVersion(const int n) {
-      int l = 0, r = n;
-      while (true){
-        int mid = l +(r-l)/2;
-        if (isBadVersion(mid)){
-          if (!isBadVersion(mid-1)) return mid;
-          r = mid-1;
-        } else {
-          l = mid+1;
+    int firstBadVersion(int n) {
+        int left = 0, right = n;
+        while (left < right){
+          int mid = left + (right - left) / 2;
+          if (isBadVersion(mid)){
+            right = mid;
+          } else left = mid + 1;
         }
-      }
+        return left;
     }
 };
