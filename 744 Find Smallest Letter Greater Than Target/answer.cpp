@@ -1,18 +1,12 @@
 class Solution {
 public:
-  char nextGreatestLetter(const vector<char>& letters, const char target) {
-    int l = 0, r = letters.size()-1;
-    while (l <= r){
-      int mid = (l+r)/2;
-      if (letters[mid] > target){
-        if (mid > 0 && letters[mid-1] <= target){
-          return letters[mid];
+    char nextGreatestLetter(vector<char>& letters, char target) {
+        int left = 0, right = letters.size()-1;
+        while (left < right){
+            int mid = (left + right) / 2;
+            if (letters[mid] <= target) left = mid + 1;
+            else right = mid;
         }
-        r = mid-1;
-      } else {
-        l = mid+1;
-      }
+        return letters[left] > target ? letters[left] : letters[0];
     }
-    return letters[0];
-  }
 };
